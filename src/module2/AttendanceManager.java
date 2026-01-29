@@ -1,4 +1,4 @@
-package attendance-marking-module;
+package model;
 
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -20,7 +20,7 @@ public class AttendanceManager {
 
         for (int i = 0; i < n; i++) {
             System.out.print("Enter Roll No: ");
-            int roll = sc.nextInt();
+            String roll = sc.next();
 
             System.out.print("Present or Absent (P/A): ");
             String status = sc.next();
