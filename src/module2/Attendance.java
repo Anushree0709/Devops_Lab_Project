@@ -1,24 +1,28 @@
-package attendance-marking-module;
+package module2;
 
 import java.util.HashMap;
 
 public class Attendance {
     private String date;
-    private HashMap<Integer, String> studentAttendance;
+    private HashMap<String, String> studentAttendance; // RollNo -> P/A
 
+    // Constructor
     public Attendance(String date) {
         this.date = date;
         studentAttendance = new HashMap<>();
     }
 
-    public void markAttendance(int rollNo, String status) {
+    // Mark attendance for a student
+    public void markAttendance(String rollNo, String status) {
         studentAttendance.put(rollNo, status);
     }
 
-    public HashMap<Integer, String> getStudentAttendance() {
+    // Get all attendance for the date
+    public HashMap<String, String> getStudentAttendance() {
         return studentAttendance;
     }
 
+    // Get the date
     public String getDate() {
         return date;
     }
