@@ -3,7 +3,7 @@ package module;
 import model.Student;
 import java.util.ArrayList;
 
-class StudentManagerLegacy {
+public class StudentManager {
     private ArrayList<Student> students = new ArrayList<>();
 
     public void addStudent(String rollNo, String name, String className) {
