@@ -32,20 +32,24 @@ public class AttendanceManager {
         }
 
         Scanner sc = new Scanner(System.in);
-        Map<Integer, String> daily = attendance.getOrDefault(date, new HashMap<>());
+        try {
+            Map<Integer, String> daily = attendance.getOrDefault(date, new HashMap<>());
 
-        for (Map.Entry<Integer, String> e : students.entrySet()) {
-            System.out.print("Roll " + e.getKey() + " (" + e.getValue() + ") - Present or Absent (P/A): ");
-            String status = sc.next().trim().toUpperCase();
-            if (!status.equals("P") && !status.equals("A")) {
-                System.out.println("Invalid input, marking Absent.");
-                status = "A";
+            for (Map.Entry<Integer, String> e : students.entrySet()) {
+                System.out.print("Roll " + e.getKey() + " (" + e.getValue() + ") - Present or Absent (P/A): ");
+                String status = sc.next().trim().toUpperCase();
+                if (!status.equals("P") && !status.equals("A")) {
+                    System.out.println("Invalid input, marking Absent.");
+                    status = "A";
+                }
+                daily.put(e.getKey(), status);
             }
-            daily.put(e.getKey(), status);
-        }
 
-        attendance.put(date, daily);
-        System.out.println("Attendance recorded for " + date);
+            attendance.put(date, daily);
+            System.out.println("Attendance recorded for " + date);
+        } finally {
+            sc.close();
+        }
     }
 
     public void viewAttendance(int roll) {

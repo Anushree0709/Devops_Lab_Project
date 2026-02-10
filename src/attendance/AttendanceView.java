@@ -1,4 +1,4 @@
-package model;
+package src.attendance;
 
 import java.util.Scanner;
 

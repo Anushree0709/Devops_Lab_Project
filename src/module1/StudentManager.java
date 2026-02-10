@@ -1,4 +1,4 @@
-package module;
+package src.module1;
 
 import model.Student;
 import java.util.ArrayList;
