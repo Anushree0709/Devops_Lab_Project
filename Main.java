@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-class OldMain {
+public class Main {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
@@ -14,7 +14,7 @@ class OldMain {
         fileHandler.loadAttendance(attendanceManager);
 
         do {
-            System.out.println("\n===== ATTENDANCE MANAGEMENT SYSTEM =====");
+            System.out.println("\n==== ATTENDANCE MANAGEMENT SYSTEM =====");
             System.out.println("1. Add Student");
             System.out.println("2. Display Students");
             System.out.println("3. Mark Attendance");
