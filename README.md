@@ -17,14 +17,23 @@ Arrays / Collections
 Date handling
 
 GitHub Collaboration Structure 
-main
-├── src/
-│   ├── module1/
-│   ├── module2/
-│   ├── module3/
-│   └── module4/
-├── README.md
-└── .gitignore
+attendance-system/
+│
+├── model/
+│   └── Student.java
+│
+├── module/
+│   ├── StudentManager.java
+│   ├── AttendanceManager.java
+│   ├── AttendanceViewer.java
+│   ├── ReportGenerator.java
+│
+├── util/
+│   └── FileHandler.java
+│
+├── Main.java
+└── README.md
+
 
 Each collaborator:
 Creates a separate branch
