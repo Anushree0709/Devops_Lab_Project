@@ -1,5 +1,6 @@
 # Devops_Lab_Project
 Lab term work for Sem 6
+<<<<<<< HEAD
 
 Attendance Management System
 
@@ -31,3 +32,6 @@ Creates a separate branch
 Works on one module
 Raises pull requests
 
+=======
+hello 
+>>>>>>> Added new feature
