@@ -1,16 +1,73 @@
+// // package src.module1;
+// // import static org.junit.jupiter.api.Assertions.*;
+// // import org.junit.jupiter.api.Test;
+
+// // public class StudentManagerTest {
+
+// //     @Test
+// //     void testCreate() {
+// //         StudentManagerLegacy sm = new StudentManagerLegacy();
+// //         assertNotNull(sm);
+// //     }
+// // }
+
 // package src.module1;
+
 // import static org.junit.jupiter.api.Assertions.*;
+// import org.junit.jupiter.api.BeforeEach;
 // import org.junit.jupiter.api.Test;
 
 // public class StudentManagerTest {
 
+//     StudentManagerLegacy sm;
+
+//     @BeforeEach
+//     void setUp() {
+//         sm = new StudentManagerLegacy();
+//     }
+
 //     @Test
 //     void testCreate() {
-//         StudentManagerLegacy sm = new StudentManagerLegacy();
 //         assertNotNull(sm);
 //     }
-// }
 
+//     @Test
+//     void testAddStudent() {
+//         assertDoesNotThrow(() -> {
+//             sm.addStudent("101", "Sejal", "CS");
+//         });
+//     }
+
+//     @Test
+//     void testMultipleStudents() {
+//         assertDoesNotThrow(() -> {
+//             sm.addStudent("201", "A", "IT");
+//             sm.addStudent("202", "B", "IT");
+//         });
+//     }
+
+//     @Test
+//     void testEmptyName() {
+//         assertDoesNotThrow(() -> {
+//             sm.addStudent("102", "", "CS");
+//         });
+//     }
+
+//     @Test
+//     void testEmptyId() {
+//         assertDoesNotThrow(() -> {
+//             sm.addStudent("", "Test", "CS");
+//         });
+//     }
+
+//     // @Test
+//     // void testFailExample() {
+//     //         assertThrows(Exception.class, () -> {
+//     //         sm.addStudent("101", "Sejal", "CS");
+//     //     });
+//     // }
+
+// }
 
 package src.module1;
 
@@ -18,9 +75,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class StudentManagerTest {
+class StudentManagerTest {
 
-    StudentManagerLegacy sm;
+    private StudentManagerLegacy sm;
 
     @BeforeEach
     void setUp() {
@@ -33,39 +90,50 @@ public class StudentManagerTest {
     }
 
     @Test
-    void testAddStudent() {
-        assertDoesNotThrow(() -> {
-            sm.addStudent("101", "Sejal", "CS");
-        });
+    void testAddStudentSuccess() {
+        sm.addStudent("101", "Sejal", "CS");
+        assertEquals(1, sm.getStudents().size());
     }
 
     @Test
-    void testMultipleStudents() {
-        assertDoesNotThrow(() -> {
-            sm.addStudent("201", "A", "IT");
-            sm.addStudent("202", "B", "IT");
-        });
+    void testEmptyNameThrows() {
+        assertThrows(IllegalArgumentException.class, () -> sm.addStudent("102", "", "CS"));
     }
 
     @Test
-    void testEmptyName() {
-        assertDoesNotThrow(() -> {
-            sm.addStudent("102", "", "CS");
-        });
+    void testEmptyRollThrows() {
+        assertThrows(IllegalArgumentException.class, () -> sm.addStudent("", "Test", "CS"));
     }
 
     @Test
-    void testEmptyId() {
-        assertDoesNotThrow(() -> {
-            sm.addStudent("", "Test", "CS");
-        });
+    void testNullNameThrows() {
+        assertThrows(IllegalArgumentException.class, () -> sm.addStudent("103", null, "CS"));
     }
 
-    // @Test
-    // void testFailExample() {
-    //         assertThrows(Exception.class, () -> {
-    //         sm.addStudent("101", "Sejal", "CS");
-    //     });
-    // }
+    @Test
+    void testNullRollThrows() {
+        assertThrows(IllegalArgumentException.class, () -> sm.addStudent(null, "Test", "CS"));
+    }
 
+    @Test
+    void testDuplicateRollThrows() {
+        sm.addStudent("200", "A", "IT");
+
+        assertThrows(IllegalArgumentException.class, () -> sm.addStudent("200", "B", "IT"));
+    }
+
+    @Test
+    void testGetStudentsUnmodifiable() {
+        sm.addStudent("300", "Test", "CS");
+
+        assertThrows(UnsupportedOperationException.class, () -> sm.getStudents().add(null));
+    }
+
+    @Test
+    void testDuplicateRollWithSpacesShouldFail() {
+        sm.addStudent("101", "A", "CS");
+
+        // logically same roll but with spaces
+        assertThrows(IllegalArgumentException.class, () -> sm.addStudent(" 101 ", "B", "CS"));
+    }
 }
